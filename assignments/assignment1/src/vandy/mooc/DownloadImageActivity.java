@@ -26,10 +26,14 @@ public class DownloadImageActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         // Always call super class for necessary
         // initialization/implementation.
-        // @@ TODO -- you fill in here.
+
+        super.onCreate(savedInstanceState);
 
         // Get the URL associated with the Intent data.
         // @@ TODO -- you fill in here.
+        Intent intent = getIntent();
+        Uri url = intent.getData();
+
 
         // Download the image in the background, create an Intent that
         // contains the path to the image file, and set this as the
