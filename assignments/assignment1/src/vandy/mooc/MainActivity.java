@@ -65,7 +65,6 @@ public class MainActivity extends LifecycleLoggingActivity {
         // (if any).
 
         mUrlEditText = (EditText) findViewById(R.id.url);
-        //String urlString = mUrlEditText.getText().toString();
 
     }
 
@@ -86,13 +85,17 @@ public class MainActivity extends LifecycleLoggingActivity {
             // image from the URL given by the user.  In this case
             // it's an Intent that's implemented by the
             // DownloadImageActivity.
-            // @@ TODO - you fill in here.
+
+            Intent downloadImageIntent = makeDownloadImageIntent(getUrl());
 
             // Start the Activity associated with the Intent, which
             // will download the image and then return the Uri for the
             // downloaded image file via the onActivityResult() hook
             // method.
-            // @@ TODO -- you fill in here.
+
+            startActivityForResult(downloadImageIntent, DOWNLOAD_IMAGE_REQUEST);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,29 +112,27 @@ public class MainActivity extends LifecycleLoggingActivity {
                                     int resultCode,
                                     Intent data) {
         // Check if the started Activity completed successfully.
-        // @@ TODO -- you fill in here, replacing true with the right
-        // code.
-        if (true) {
+        if (resultCode == RESULT_OK) {
             // Check if the request code is what we're expecting.
-            // @@ TODO -- you fill in here, replacing true with the
-            // right code.
-            if (true) {
+            if (requestCode == DOWNLOAD_IMAGE_REQUEST) {
                 // Call the makeGalleryIntent() factory method to
                 // create an Intent that will launch the "Gallery" app
                 // by passing in the path to the downloaded image
                 // file.
-                // @@ TODO -- you fill in here.
+
+                Intent galleryIntent = makeGalleryIntent(data.getData().toString());
 
                 // Start the Gallery Activity.
-                // @@ TODO -- you fill in here.
+
+                startActivity(galleryIntent);
             }
         }
         // Check if the started Activity did not complete successfully
         // and inform the user a problem occurred when trying to
         // download contents at the given URL.
-        // @@ TODO -- you fill in here, replacing true with the right
-        // code.
-        else if (true) {
+
+        else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Problem with downloading contents", Toast.LENGTH_LONG).show();
         }
     }    
 
