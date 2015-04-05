@@ -182,7 +182,7 @@ public class MainActivity extends LifecycleLoggingActivity {
         // Do a sanity check to ensure the URL is valid, popping up a
         // toast if the URL is invalid.
 
-        if (URLUtil.isValidUrl(uri))
+        if (URLUtil.isValidUrl(url.toString()))
             return url;
         else {
             Toast.makeText(this,
