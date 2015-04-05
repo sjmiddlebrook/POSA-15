@@ -86,15 +86,16 @@ public class MainActivity extends LifecycleLoggingActivity {
             // it's an Intent that's implemented by the
             // DownloadImageActivity.
 
-            Intent downloadImageIntent = makeDownloadImageIntent(getUrl());
+            if (getUrl() != null) {
+                Intent downloadImageIntent = makeDownloadImageIntent(getUrl());
 
-            // Start the Activity associated with the Intent, which
-            // will download the image and then return the Uri for the
-            // downloaded image file via the onActivityResult() hook
-            // method.
+                // Start the Activity associated with the Intent, which
+                // will download the image and then return the Uri for the
+                // downloaded image file via the onActivityResult() hook
+                // method.
 
-            startActivityForResult(downloadImageIntent, DOWNLOAD_IMAGE_REQUEST);
-
+                startActivityForResult(downloadImageIntent, DOWNLOAD_IMAGE_REQUEST);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
