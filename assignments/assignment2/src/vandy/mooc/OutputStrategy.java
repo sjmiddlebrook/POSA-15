@@ -1,8 +1,8 @@
 package vandy.mooc;
 
-import java.lang.ref.WeakReference;
-
 import android.util.Log;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Implements a API for outputting data to Android UI thread and
@@ -34,7 +34,12 @@ public class OutputStrategy {
         // Runnable that's ultimately posted to the UI Thread via
         // another Thread that sleeps for 0.5 seconds to let the user
         // see what's going on.
-        // @@ TODO - you fill in here.
+
+        MainActivity main = mOuterClass.get();
+        if (main != null) {
+            main.print(outputString);
+        }
+
     }
 
     /**
